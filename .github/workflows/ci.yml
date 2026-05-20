@@ -27,6 +27,15 @@ jobs:
             exit 1
           fi
 
+      - name: Version consistency
+        run: |
+          pkg_version=$(grep -oP '(?<="version": ")[^"]+' package.json)
+          changelog_version=$(grep -m1 -oP '(?<=## \[)[0-9]+\.[0-9]+\.[0-9]+(?=\])' CHANGELOG.md)
+          if [ "$pkg_version" != "$changelog_version" ]; then
+            echo "package.json version ($pkg_version) does not match latest CHANGELOG.md entry ($changelog_version)"
+            exit 1
+          fi
+
   node:
     runs-on: ubuntu-latest
     steps:
