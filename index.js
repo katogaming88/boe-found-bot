@@ -38,7 +38,6 @@ app.post('/send', async (req, res) => {
   }
 });
 
-// Health check so Railway/Render knows the service is alive
 app.get('/health', (_req, res) => res.status(200).json({ status: 'ok' }));
 
 client.once('ready', () => {
