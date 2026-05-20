@@ -39,13 +39,17 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`.
 
 ## Changelog
 
-Every PR must add a versioned changelog entry — **never under `[Unreleased]`**. Each PR bumps the version and includes today's date:
+Every new PR must add a versioned changelog entry with today's date and bump `package.json` to match:
 
 ```
 ## [X.Y.Z] - YYYY-MM-DD
 ```
 
-Also bump `package.json` to match. The CI `changelog` job enforces that:
+Additional commits pushed to an **existing open PR** do not need a new version — just append items to that PR's existing entry.
+
+`## [Unreleased]` at the top is a placeholder for changes not yet assigned to a version. It should be empty while a versioned entry exists below it. The official public release will be `1.0.0`.
+
+The CI `changelog` job enforces that:
 - `CHANGELOG.md` was modified
 - Every versioned entry follows `## [X.Y.Z] - YYYY-MM-DD`
 - The latest changelog version matches `package.json`
