@@ -115,6 +115,8 @@ Returns `{ "status": "ok" }`. Used by Railway/Render to confirm the process is a
 5. Deploy. Copy the public URL from the service dashboard.
 
 > **Note for Render free tier:** the service sleeps after 15 minutes of inactivity. The first request after a sleep takes ~30 seconds (cold start). Google Apps Script's default timeout is 30 seconds, so you may occasionally see timeout errors on the first submission of the day. Upgrade to a paid instance or use Railway's hobby tier to avoid this.
+>
+> **Free workaround — keep it awake with a cron pinger:** Go to [cron-job.org](https://cron-job.org), create a free account, and add a new cron job pointing to `https://your-render-url.onrender.com/health` on a **10-minute interval**. This pings the `/health` endpoint often enough to prevent the service from sleeping, at no cost.
 
 ---
 

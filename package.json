@@ -1,6 +1,6 @@
 {
   "name": "boe-found",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Relay server that forwards Google Apps Script BOE form submissions to a Discord channel",
   "main": "index.js",
   "scripts": {
