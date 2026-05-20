@@ -29,8 +29,6 @@ The startup sequence is:
 - Branch naming: `feature/<name>`, `fix/<name>`, `hotfix/<name>`, `chore/<name>`.
 - Squash-merge PRs into `main`.
 - Versioning follows SemVer. While `0.x.x`, minor versions may include small breaking changes.
-- Release process: update `CHANGELOG.md` (move `[Unreleased]` items to a versioned section), bump `package.json`, commit as `chore: release vX.X.X`, tag the commit.
-
 ## Commit message format
 
 ```
@@ -41,4 +39,19 @@ Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`.
 
 ## Changelog
 
-Every PR must add an entry under `[Unreleased]` in `CHANGELOG.md`.
+Every new PR must add a versioned changelog entry with today's date and bump `package.json` to match:
+
+```
+## [X.Y.Z] - YYYY-MM-DD
+```
+
+Additional commits pushed to an **existing open PR** do not need a new version — just append items to that PR's existing entry.
+
+`## [Unreleased]` at the top is a placeholder for changes not yet assigned to a version. It should be empty while a versioned entry exists below it. The official public release will be `1.0.0`.
+
+The CI `changelog` job enforces that:
+- `CHANGELOG.md` was modified
+- Every versioned entry follows `## [X.Y.Z] - YYYY-MM-DD`
+- The latest changelog version matches `package.json`
+
+Run checks locally with: `node scripts/check-changelog.js`

@@ -30,11 +30,11 @@ This project uses [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH
 
 While the version is `0.x.x`, minor versions may include small breaking changes. Once `1.0.0` is tagged, the full SemVer contract applies.
 
-**How to release:**
-1. Update `CHANGELOG.md` — move items from `[Unreleased]` to a new versioned section with today's date.
-2. Bump the version in `package.json`.
-3. Commit: `chore: release v0.x.x`.
-4. Tag: `git tag v0.x.x` and push the tag.
+**Per-PR changelog rule:**
+1. Every new PR adds a versioned section to `CHANGELOG.md` with today's date and bumps `package.json` to match.
+2. Additional commits pushed to the **same open PR** do not need a new version — just append items to that PR's existing entry.
+3. `## [Unreleased]` is a placeholder for changes not yet assigned to a version; leave it empty while a versioned entry exists below it.
+4. The official public release will be `1.0.0`.
 
 ---
 
