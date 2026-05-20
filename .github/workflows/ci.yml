@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  ci:
+  changelog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +26,11 @@ jobs:
             echo "$invalid"
             exit 1
           fi
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
