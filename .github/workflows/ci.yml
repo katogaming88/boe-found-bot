@@ -12,29 +12,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Changelog updated
-        run: |
-          git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^CHANGELOG.md$" || \
-          { echo "CHANGELOG.md must be updated in every PR"; exit 1; }
-
-      - name: Changelog format
-        run: |
-          invalid=$(grep -E "^## \[" CHANGELOG.md | grep -v "^## \[Unreleased\]" | \
-            grep -vE "^## \[[0-9]+\.[0-9]+\.[0-9]+\] - [0-9]{4}-[0-9]{2}-[0-9]{2}$" || true)
-          if [ -n "$invalid" ]; then
-            echo "Versioned changelog entries must follow '## [X.Y.Z] - YYYY-MM-DD':"
-            echo "$invalid"
-            exit 1
-          fi
-
-      - name: Version consistency
-        run: |
-          pkg_version=$(grep -oP '(?<="version": ")[^"]+' package.json)
-          changelog_version=$(grep -m1 -oP '(?<=## \[)[0-9]+\.[0-9]+\.[0-9]+(?=\])' CHANGELOG.md)
-          if [ "$pkg_version" != "$changelog_version" ]; then
-            echo "package.json version ($pkg_version) does not match latest CHANGELOG.md entry ($changelog_version)"
-            exit 1
-          fi
+      - name: Check changelog
+        run: node scripts/check-changelog.js
 
   node:
     runs-on: ubuntu-latest
