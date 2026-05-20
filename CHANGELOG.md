@@ -9,6 +9,11 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- ESLint (v10, flat config) with Node.js globals and `eslint:recommended` rules
+- `npm run lint` script
+- GitHub Actions CI workflow — runs `npm ci`, `npm run lint`, and `npm audit --audit-level=high` on every PR targeting `master`
+
 ## [0.0.1] — 2026-05-20
 
 ### Added
