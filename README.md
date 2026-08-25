@@ -98,7 +98,13 @@ Returns `{ "status": "ok" }`. Used by Railway/Render to confirm the process is a
 
 ---
 
-## Deploying to Railway
+## Deploying
+
+**Current production deployment** runs on an Oracle Cloud Always Free VM under pm2 — see [DEPLOYMENT.md](./DEPLOYMENT.md) for the server details, SSH access, and update process.
+
+The bot previously ran on Render and Railway; it no longer does, but the steps below still work if you want to self-host on either.
+
+### Deploying to Railway
 
 1. Push this repo to GitHub.
 2. Go to [railway.app](https://railway.app), create a new project, and select **Deploy from GitHub repo**.
@@ -106,9 +112,7 @@ Returns `{ "status": "ok" }`. Used by Railway/Render to confirm the process is a
 4. In **Variables**, add `BOT_TOKEN`, `CHANNEL_ID`, and `SHARED_SECRET` (Railway sets `PORT` automatically — do not override it).
 5. Railway will build and deploy. Copy the public URL from the **Settings → Domains** tab.
 
-## Deploying to Render
-
-**Live service:** [dashboard.render.com/web/srv-d86sdfmq1p3s73ccdbog](https://dashboard.render.com/web/srv-d86sdfmq1p3s73ccdbog)
+### Deploying to Render
 
 1. Push this repo to GitHub.
 2. Go to [render.com](https://render.com) and create a new **Web Service**.
@@ -128,7 +132,7 @@ In your Google Apps Script, replace the webhook `UrlFetchApp.fetch()` call with:
 
 ```javascript
 function postToDiscord(message) {
-  var url = 'https://your-deployed-url.railway.app/send';
+  var url = 'http://129.80.178.227:3002/send'; // or your own deployment's URL
   var options = {
     method: 'post',
     contentType: 'application/json',
