@@ -1,5 +1,10 @@
 # BOE Found — Discord Relay Bot
 
+THIS BOT IS NO LONGER NEEDED AS WE HAVE MOVED THE BOE FOUND FORM TO https://github.com/katogaming88/WGA-Raid-Hub
+
+
+---
+
 A tiny Express + discord.js server that receives POST requests from Google Apps Script and forwards the message to a Discord channel. This sidesteps Cloudflare's rate-limiting (error 1015) that blocks Discord webhook calls made from shared Google Apps Script IPs.
 
 ---
